@@ -145,6 +145,9 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        'Gvb\Whoops\ServiceProvider',
+        'Barryvdh\Debugbar\ServiceProvider'
+
     ],
 
     /*
@@ -194,6 +197,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
 
+        'Debugbar' => 'Barryvdh\Debugbar\Facade',
     ],
 
 ];

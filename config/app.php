@@ -145,7 +145,6 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
-        'Gvb\Whoops\ServiceProvider',
         'Barryvdh\Debugbar\ServiceProvider'
 
     ],

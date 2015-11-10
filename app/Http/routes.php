@@ -19,10 +19,6 @@ Route::get('about', function () {
     return 'about.index';
 });
 
-Route::get('posts/{page?}', function () {
-    return 'posts.index';
-});
-
 Route::get('hot/{page?}', function () {
     return 'posts.hot';
 });
@@ -31,30 +27,36 @@ Route::get('random', function () {
     return 'posts.random';
 });
 
-Route::get('posts/{id}', function () {
-    return 'posts.show';
-});
+Route::group(['prefix' => 'posts'], function() {
+    Route::post('/', function () {
+        return 'posts.store';
+    });
 
-Route::get('posts/create', function () {
-    return 'posts.create';
-});
+    Route::get('{id}/edit', function () {
+        return 'posts.edit';
+    });
 
-Route::post('posts', function () {
-    return 'posts.store';
-});
+    Route::patch('{id}', function () {
+        return 'posts.update';
+    });
 
-Route::get('posts/{id}/edit', function () {
-    return 'posts.edit';
-});
+    Route::delete('{id}', function () {
+        return 'posts.destroy';
+    });
 
-Route::patch('posts/{id}', function () {
-    return 'posts.update';
-});
+    Route::post('{id}/comment', function () {
+        return 'posts.comment';
+    });
 
-Route::delete('posts/{id}', function () {
-    return 'posts.destroy';
-});
+    Route::get('{page?}', function () {
+        return 'posts.index';
+    });
 
-Route::post('posts/{id}/comment', function () {
-    return 'posts.comment';
+    Route::get('{id}', function () {
+        return 'posts.show';
+    });
+
+    Route::get('create', function () {
+        return 'posts.create';
+    });
 });

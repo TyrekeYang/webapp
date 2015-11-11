@@ -11,52 +11,45 @@
 |
 */
 
-Route::get('/{page?}', function () {
-    return 'home.index';
+Route::get('/', function () {
+    $data = ['name' => 'Tyreke'];
+    return view('home.index', $data);
 });
 
 Route::get('about', function () {
-    return 'about.index';
+    return view('about.index');
 });
 
-Route::get('hot/{page?}', function () {
-    return 'posts.hot';
+Route::get('hot', function () {
+    return view('posts.hot');
 });
 
 Route::get('random', function () {
-    return 'posts.random';
+    return view('posts.random');
 });
 
 Route::group(['prefix' => 'posts'], function() {
-    Route::post('/', function () {
-        return 'posts.store';
-    });
+//    Route::post('/', function () {
+//        return view('posts.store');
+//    });
 
-    Route::get('{id}/edit', function () {
-        return 'posts.edit';
-    });
+    Route::get('{id}/edit', ['as' => 'posts.edit', 'uses' => 'PostsController@edit']);
 
     Route::patch('{id}', function () {
-        return 'posts.update';
+        return view('posts.update');
     });
 
-    Route::delete('{id}', function () {
-        return 'posts.destroy';
-    });
+//    Route::delete('{id}', function () {
+//        return view('posts.destroy');
+//    });
 
     Route::post('{id}/comment', function () {
-        return 'posts.comment';
+        return view('posts.comment');
     });
 
-    Route::get('{page?}', function () {
-        return 'posts.index';
-    });
+    Route::get('/', ['as' => 'posts.index', 'uses' => 'PostsController@index']);
 
-    Route::get('{id}', function () {
-        return 'posts.show';
-    });
+    Route::get('{id}', ['as' => 'posts.show', 'uses' => 'PostsController@show']);
 
-    Route::get('create', function () {
-        return 'posts.create';
-    });
+    Route::get('create', ['as' => 'posts.create', 'uses' => 'PostController@create']);
 });

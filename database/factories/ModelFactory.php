@@ -11,11 +11,20 @@
 |
 */
 
-$factory->define(App\User::class, function (Faker\Generator $faker) {
+$factory->define(App\Post::class, function ($faker) {
     return [
-        'name' => $faker->name,
-        'email' => $faker->email,
-        'password' => bcrypt(str_random(10)),
-        'remember_token' => str_random(10),
+        'title' => $faker->sentence,
+        'sub_title' => $faker->sentence,
+        'content' => $faker->paragraph,
+        'page_view' => rand(0, 20),
+    ];
+});
+
+$factory->define(App\Comment::class, function ($faker) {
+    return [
+        'title' => $faker->sentence,
+        'sub_title' => $faker->sentence,
+        'content' => $faker->paragraph,
+        'page_view' => rand(0, 20),
     ];
 });
